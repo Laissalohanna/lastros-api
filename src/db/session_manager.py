@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine import URL
+from constants import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+
 
 class DBConnectionHandler:
     DB_URL = URL.create(
