@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtualenv
+.venv/
+venv/
+ENV/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+logs/
+
+# Testes
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Env files
+.env
+.env.*
+!.env.example
+.env.prd
+.env.stg
+
+# Docker
+docker-compose.override.yml
+.docker/
+*.pid
+
+# Banco de dados local
+*.db
+*.sqlite3
+postgres_data/
+
+# Certificados e chaves
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+
+# Outros
+.DS_Store
+Thumbs.db
