@@ -8,5 +8,7 @@ def load_parameter():
 
     load_dotenv(dotenv_path)
 
-    keys = ["DB_USER", "DB_PASSWORD", "DB_HOST", "DB_PORT", "DB_NAME"]
+    keys = ["DB_USER", "DB_PASSWORD", "DB_HOST", "DB_PORT", "DB_NAME", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION", "S3_BUCKET", "S3_FOLDER"]
     return {key: os.getenv(key) for key in keys}
+
+

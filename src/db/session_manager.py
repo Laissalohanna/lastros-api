@@ -17,7 +17,7 @@ class DBConnectionHandler:
     def __init__(self):
         self.engine = create_engine(self.DB_URL, pool_pre_ping=True)
         self.session_maker = sessionmaker(bind=self.engine)
-
+        self.session = None
 
     def __enter__(self):
         self.session = self.session_maker()
@@ -34,19 +34,12 @@ class DBConnectionHandler:
             self.session = None
 
     def execute(self, query: str, params: dict = None, fetch: str = None):
-        session = self.session_maker()
-        try:
-            result = session.execute(text(query), params or {})
-            session.commit()
-            
-            if fetch == "all":
-                return result.fetchall()
-            elif fetch == "one":
-                return result.fetchone()
-            elif fetch == "val":
-                return result.scalar()
-        except:
-            session.rollback()
-            raise
-        finally:
-            session.close()
+        result = self.session.execute(text(query), params or {})
+
+        if fetch == "all":
+            return result.fetchall()
+        elif fetch == "one":
+            return result.fetchone()
+        elif fetch == "val":
+            return result.scalar()
+        return result

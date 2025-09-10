@@ -1,0 +1,1 @@
+from repositories.vuon_prd_repository import VuonPrdRepository
