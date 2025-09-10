@@ -6,7 +6,6 @@ from middlewares.error_handler import ErrorHandlerMiddleware
 from middlewares.auth import AuthMiddleware
 from middlewares.cors import CORSMiddleware
 
-# Inicializa API com middlewares
 app = falcon.App(
     middleware=[
         LoggingMiddleware(),
@@ -16,6 +15,5 @@ app = falcon.App(
     ]
 )
 
-# Rotas
 app.add_route("/health", HealthResource())
 app.add_route("/users", UsersResource())
