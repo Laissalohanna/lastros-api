@@ -13,7 +13,6 @@ class CustomError(Exception):
             "translate": self.translate
         }
 
-
 class NotFoundProjectUID(CustomError):
     status_code = 404 
 
