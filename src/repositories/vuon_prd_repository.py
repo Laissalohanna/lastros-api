@@ -10,6 +10,9 @@ class VuonPrdRepository:
     def __del__(self):
         self.db_handler.__exit__(None, None, None)
 
+    def get_by_project_uid(self, project_uid:str):
+        return
+
     def get_by_file_name(self, file_name, project_uid):
         return self.db.session.query(BaseFiles).filter_by(
             FileName=file_name,
