@@ -1,34 +1,31 @@
-from repositories import VuonPrdRepository
+from repositories import VuonPrdRepository, ProjectConfigRepository
+from errors import NotFoundProjectUID, NotFoundFileName
+
 
 class BallastsController:
     def __init__(self):
-        self.vuon_prd_repository = VuonPrdRepository
+        self.vuon_prd_repository = VuonPrdRepository()
+        self.project_config_repository = ProjectConfigRepository()
 
     def get_external_id_by_file_name(self, file_name: str, project_uid: str):
         try:
-            file_name = self.vuon_prd_repository.get_by_file_name(file_name=file_name
-                                                                  , project_uid=project_uid
-                                                                  )
-        except Exception as e:
-            raise ConnectionError(f"Erro ao conectar no SFTP: {e}")
+            project_config = self.project_config_repository.get_by_project_uid(project_uid=project_uid)
+            if project_config is None:
+                raise NotFoundProjectUID(project_uid=project_uid)
 
-    def upload_file(self, local_path: str, remote_path: str):
-        try:
-            self.sftp.put(local_path, remote_path)
-            print(f"Arquivo {local_path} enviado para {remote_path}.")
-        except Exception as e:
-            raise RuntimeError(f"Erro ao enviar arquivo: {e}")
+            file_entity = self.vuon_prd_repository.get_by_file_name(
+                file_name=file_name, project_uid=project_uid
+            )
+            if file_entity is None:
+                raise NotFoundFileName(file_name=file_name, project_uid=project_uid)
 
-    def delete_file(self, remote_path: str):
-        try:
-            self.sftp.remove(remote_path)
-            print(f"Arquivo {remote_path} removido com sucesso.")
-        except Exception as e:
-            raise RuntimeError(f"Erro ao remover arquivo: {e}")
+            return {
+                "external_id": file_entity.ExternalId,
+                "project_uid": project_uid,
+                "file_name": file_name
+            }
 
-    def close(self):
-        if self.sftp:
-            self.sftp.close()
-        if self.transport:
-            self.transport.close()
-        print("Conexão encerrada.")
+        except (NotFoundProjectUID, NotFoundFileName):
+            raise
+        except Exception as e:
+            raise ConnectionError(f"Erro ao consultar repositórios: {e}")
