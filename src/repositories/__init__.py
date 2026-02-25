@@ -1,2 +1,0 @@
-from repositories.vuon_prd_repository import VuonPrdRepository
-from repositories.project_config_repository import ProjectConfigRepository

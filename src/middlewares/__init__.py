@@ -1,4 +1,0 @@
-from middlewares.auth import AuthMiddleware
-from middlewares.error_handler import ErrorHandlerMiddleware
-from middlewares.logging import LoggingMiddleware
-from middlewares.cors import CORSMiddleware
