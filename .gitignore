@@ -16,7 +16,6 @@ venv/
 ENV/
 
 # IDEs e editores
-.vscode/
 .idea/
 *.swp
 *~
