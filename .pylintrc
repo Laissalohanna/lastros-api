@@ -10,7 +10,8 @@ disable=
       C0321, # Multiple-statements
       W0221, # Arguments-differ
       R0801, # Duplicate-code
-      
+      C0115, # Missing class docstring
+      W0201, # Attribute defined outside
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
 # only in one or another interpreter, leading to false positives when analysed.
@@ -57,8 +58,7 @@ fail-under=10
 #from-stdin=
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=CVS
-ignore=migrations
+ignore=CVS,migrations,venv
 
 # Add files or directories matching the regular expressions patterns to the
 # ignore-list. The regex matches against paths and can be in Posix or Windows
