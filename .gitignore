@@ -15,6 +15,10 @@ build/
 venv/
 ENV/
 
+
+#Base
+sql/
+
 # IDEs e editores
 .idea/
 *.swp

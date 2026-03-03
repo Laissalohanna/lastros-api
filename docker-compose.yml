@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: send_ballants
+    restart: always
+    environment:
+      POSTGRES_DB: ballants
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data 
+  app:
+    build: .
+    container_name: send_ballasts_app
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env.prd
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+volumes:
+  pg_data:
