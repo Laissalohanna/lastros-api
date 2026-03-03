@@ -12,6 +12,7 @@ disable=
       R0801, # Duplicate-code
       C0115, # Missing class docstring
       W0201, # Attribute defined outside
+      R0903 # Too few public methods
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
 # only in one or another interpreter, leading to false positives when analysed.
